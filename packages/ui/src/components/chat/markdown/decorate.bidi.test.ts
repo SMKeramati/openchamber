@@ -65,3 +65,21 @@ test('bare URLs are isolated without forcing the direction of translated link la
   expect(links[0]?.getAttribute('dir')).toBe('ltr');
   expect(links[1]?.hasAttribute('dir')).toBe(false);
 });
+
+test('a table grid resolves its own direction while its toolbar stays LTR', () => {
+  const root = document.createElement('div');
+  root.innerHTML = '<table><thead><tr><th>ستون اول</th><th>ستون دوم</th></tr></thead><tbody><tr><td>مقدار</td><td><code>src/app.ts</code></td></tr></tbody></table>';
+  document.body.append(root);
+  const originalText = root.querySelector('table')?.textContent;
+  decorateMarkdown(root, context);
+
+  const wrapper = root.querySelector('[data-markdown="table-wrapper"]');
+  const table = root.querySelector('table');
+  expect(wrapper?.hasAttribute('dir')).toBe(false);
+  expect(table?.parentElement?.getAttribute('dir')).toBe('auto');
+  expect(table?.hasAttribute('dir')).toBe(false);
+  expect(table?.textContent).toBe(originalText);
+  const decorated = root.innerHTML;
+  decorateMarkdown(root, context);
+  expect(root.innerHTML).toBe(decorated);
+});

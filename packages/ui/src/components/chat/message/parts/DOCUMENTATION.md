@@ -85,6 +85,11 @@ its logical gutter, allowing adjacent Arabic and English items. Inline code
 and code widgets have explicit LTR attributes so they do not choose the
 containing item's direction. Direction changes preserve source and copy text.
 
+A table's toolbar stays LTR with the other widget controls, but the grid
+inside resolves its own direction: `decorate.ts` gives the table's scroll
+container `dir="auto"`, so an RTL table puts its first column on the right,
+scrolls from the right, and sits on the right side of the message.
+
 ### Optional live history disclosure
 
 Activity Default is shared by the settings UI in both render modes. In live
