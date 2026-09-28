@@ -391,6 +391,9 @@ const decorateTables = (root: HTMLElement, labels: DecorateLabels): void => {
 
     const scroll = document.createElement('div');
     scroll.className = 'overflow-x-auto rounded-lg border border-border/80 bg-[var(--surface-elevated)]';
+    // The grid follows its own text: an RTL table puts its first column on
+    // the right and scrolls from there. The toolbar stays outside, LTR.
+    scroll.setAttribute('dir', 'auto');
 
     const parent = table.parentElement;
     if (!parent) continue;
@@ -406,10 +409,10 @@ const decorateTables = (root: HTMLElement, labels: DecorateLabels): void => {
     lastBodyRow?.classList.remove('border-b');
     lastBodyRow?.classList.add('border-0');
     for (const th of Array.from(table.querySelectorAll('th'))) {
-      th.classList.add('min-w-[120px]', 'whitespace-normal', '[overflow-wrap:anywhere]', 'border-r', 'border-border/60', 'px-4', 'py-2.5', 'text-left', 'align-middle', 'font-semibold', 'text-foreground', 'last:border-r-0');
+      th.classList.add('min-w-[120px]', 'whitespace-normal', '[overflow-wrap:anywhere]', 'border-e', 'border-border/60', 'px-4', 'py-2.5', 'text-start', 'align-middle', 'font-semibold', 'text-foreground', 'last:border-e-0');
     }
     for (const td of Array.from(table.querySelectorAll('td'))) {
-      td.classList.add('min-w-[120px]', 'whitespace-normal', '[overflow-wrap:anywhere]', 'border-r', 'border-border/60', 'px-4', 'py-2.5', 'align-middle', 'text-foreground/90', 'last:border-r-0');
+      td.classList.add('min-w-[120px]', 'whitespace-normal', '[overflow-wrap:anywhere]', 'border-e', 'border-border/60', 'px-4', 'py-2.5', 'align-middle', 'text-foreground/90', 'last:border-e-0');
     }
 
     scroll.appendChild(table);

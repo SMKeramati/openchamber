@@ -106,6 +106,12 @@ button,
   text-align: start;
 }
 
+/* The table wrapper keeps its LTR toolbar; the grid inside resolves its own
+   direction, and an RTL grid sits on the right like the prose around it. */
+.markdown-content [data-markdown="table-wrapper"]:has(> [dir="auto"]:dir(rtl)) {
+  margin-inline-start: auto;
+}
+
 /* Native selection uses the theme's selection pair. */
 .message-content-text::selection,
 .message-content-text ::selection,
