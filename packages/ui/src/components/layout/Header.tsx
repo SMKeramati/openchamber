@@ -1445,7 +1445,7 @@ export const Header: React.FC = () => {
                   </button>
                 </form>
               ) : isNewSessionDraftOpen ? null : (
-                <span className="truncate typography-ui-label text-[14px] font-normal leading-tight text-foreground max-w-full">
+                <span dir="auto" className="truncate typography-ui-label text-[14px] font-normal leading-tight text-foreground max-w-full">
                   {currentSessionTitle}
                 </span>
               )}
