@@ -30,6 +30,7 @@ import * as ollamaCloud from './ollama-cloud.js';
 import * as wafer from './wafer.js';
 import * as opencodeGo from './opencode-go.js';
 import * as xai from './xai.js';
+import { routerRegistryEntries } from './harness-router.js';
 
 const registry = {
   claude: {
@@ -165,6 +166,9 @@ const registry = {
     fetchQuota: xai.fetchQuota
   }
 };
+
+// Harness: with a router status URL set, Claude and Codex read the router's seats.
+Object.assign(registry, routerRegistryEntries());
 
 const pendingFetches = new Map();
 
